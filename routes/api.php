@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('table',[AdminTablesController::class, 'index']);
 Route::post('table',[AdminTablesController::class,'store']);
 Route::put('table/{id}',[AdminTablesController::class,'update']);
-Route::delete('table/{id}',[AdminTablesController::class,'delete']);
+Route::delete('table/{id}',[AdminTablesController::class,'destroy']);
 
 /*API Products */
 Route::get('products', [AdminProductsController::class, 'index']);

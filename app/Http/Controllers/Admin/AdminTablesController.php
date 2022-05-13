@@ -90,6 +90,8 @@ class AdminTablesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $table = Table::findOrFail($id);
+        $table->delete();
+        return response()->json($table);
     }
 }
