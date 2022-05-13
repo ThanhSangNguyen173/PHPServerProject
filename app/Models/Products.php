@@ -15,5 +15,6 @@ class Products extends Model
         'name',
         'price',
         'status', 
+        'imgurl',
     ];
 }

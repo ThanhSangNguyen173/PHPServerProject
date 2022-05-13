@@ -75,7 +75,7 @@ class AdminProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $products = MenuItem::findOrFail($id);
+        $products = Products::findOrFail($id);
         $products->update($request->all());
         $products->save();
 
@@ -90,7 +90,7 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
-        $products = MenuItem::findOrFail($id);
+        $products = Products::findOrFail($id);
         $products->delete();
 
         return response()->json($products);
