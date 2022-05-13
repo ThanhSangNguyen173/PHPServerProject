@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('price');
             $table->boolean('status');
+            $table->string('imgurl');
         });
     }
 
