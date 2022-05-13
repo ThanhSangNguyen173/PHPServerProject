@@ -39,7 +39,10 @@ class AdminTablesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $table = Table::create($request->all());
+
+        $table_list = Table::all();
+        return response()->json($table_list,201);
     }
 
     /**
@@ -73,7 +76,10 @@ class AdminTablesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $table = Table::findOrFail($id);
+        $table->update($request->all());
+        $table->save();
+        return response()->json($table);
     }
 
     /**

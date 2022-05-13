@@ -11,7 +11,7 @@ class Table extends Model
 
     public $timestamps = false;
 
-    protected $fillalble = [
+    protected $fillable = [
         'serial_tagcast_id',
         'status',
     ];
