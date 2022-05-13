@@ -38,7 +38,10 @@ class AdminBillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bill = Bill::create($request->all());
+        $bill = Bill::all();
+
+        return response()->json($bill, 201);
     }
 
     /**
@@ -72,7 +75,11 @@ class AdminBillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bill = Bill::findOrFail($id);
+        $bill->update($request->all());
+        $bill->save();
+
+        return response()->json($bill);
     }
 
     /**
@@ -83,6 +90,9 @@ class AdminBillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bill = Bill::findOrFail($id);
+        $bill->delete();
+
+        return response()->json($bill);
     }
 }
