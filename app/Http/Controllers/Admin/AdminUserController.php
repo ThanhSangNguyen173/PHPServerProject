@@ -16,8 +16,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $table = Users::all();
-        return response()->json($table);
+        $users = Users::all();
+        return response()->json($users);
     }
 
     /**
