@@ -36,3 +36,5 @@ Route::get('users',[AdminUserController::class, 'index']);
 Route::post('users',[AdminUserController::class, 'store']);
 Route::put('users/{id}', [AdminUserController::class, 'update']);
 Route::delete('users/{id}', [AdminUserController::class, 'destroy']);
+
+/**API Login logout resigen */
