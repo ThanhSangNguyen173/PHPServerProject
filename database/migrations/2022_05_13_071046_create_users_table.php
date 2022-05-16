@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('email')->unique();
-            $table->timestamps('email_verified_at')->nullable();
-            $table->string('api_token');
             $table->timestamps();
         });
     }

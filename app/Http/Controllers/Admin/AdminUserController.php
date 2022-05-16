@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class AdminUserController extends Controller
 {
@@ -98,4 +99,5 @@ class AdminUserController extends Controller
 
         return response()->json($users);
     }
+
 }
