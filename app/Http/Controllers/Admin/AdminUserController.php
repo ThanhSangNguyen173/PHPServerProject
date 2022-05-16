@@ -39,6 +39,10 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
         //
+        $users = Users::create($request->all());
+        $users_list =  Users::all();
+
+        return response()->json($users_list, 201);
     }
 
     /**
@@ -73,6 +77,10 @@ class AdminUserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $users=Users::findOrFail($id);
+        $users->update($request->all());
+        $users->save();
+        return response()->json($users);
     }
 
     /**
@@ -84,5 +92,9 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         //
+        $users = Users::findOrFail($id);
+        $users->delete();
+
+        return response()->json($users);
     }
 }
