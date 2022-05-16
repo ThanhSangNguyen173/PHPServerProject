@@ -64,7 +64,8 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users=Users::findOrFail($id);
+        return response()->json($users);
     }
 
     /**

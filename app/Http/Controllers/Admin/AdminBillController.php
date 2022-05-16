@@ -63,7 +63,8 @@ class AdminBillController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bill = Bill::findOrFail($id);
+        return response()->json($bill);
     }
 
     /**
