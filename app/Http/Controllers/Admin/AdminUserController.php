@@ -96,8 +96,16 @@ class AdminUserController extends Controller
         //
         $users = Users::findOrFail($id);
         $users->delete();
-
         return response()->json($users);
     }
+
+    public function login(Request $request){
+        $email=$request['email'];
+        $password=$request['password'];
+        if(Auth::attempt(['email'=>$email,'password'=>$password])){
+            return response()->json(['message'=>'login success']);
+        }else{return response()->json(['message'=>'login fail']); }
+    }
+
 
 }
