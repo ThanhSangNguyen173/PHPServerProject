@@ -64,7 +64,8 @@ class AdminTablesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $table = Table::findOrFail($id);
+        return response()->json($table);
     }
 
     /**

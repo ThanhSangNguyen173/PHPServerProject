@@ -63,7 +63,9 @@ class AdminProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Products::findOrFail($id);
+
+        return response()->json($products);
     }
 
     /**
