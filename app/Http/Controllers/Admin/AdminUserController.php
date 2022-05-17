@@ -104,7 +104,7 @@ class AdminUserController extends Controller
         $users->delete();
         return response()->json($users);
     }
-
+    
     public function login(Request $request){
 
 
@@ -118,5 +118,4 @@ class AdminUserController extends Controller
             return response()->json(['message'=>'login success']);
         }else{return response()->json(['message'=>'login fail']);}
     }
-
 }
