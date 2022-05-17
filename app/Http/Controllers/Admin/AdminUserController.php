@@ -104,7 +104,7 @@ class AdminUserController extends Controller
         $users->delete();
         return response()->json($users);
     }
-    
+
     public function login(Request $request){
 
 
@@ -115,7 +115,8 @@ class AdminUserController extends Controller
         $user=$request['user'];
         $password=$request['password'];
         if(Auth::attempt($arr)){
-            return response()->json(['message'=>'login success']);
+            $info = Auth::user();
+            return response()->json([$info,'message'=>'login success']);
         }else{return response()->json(['message'=>'login fail']);}
     }
 }
