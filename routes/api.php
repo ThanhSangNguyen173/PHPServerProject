@@ -42,4 +42,4 @@ Route::put('users/{id}', [AdminUserController::class, 'update']);
 Route::delete('users/{id}', [AdminUserController::class, 'destroy']);
 
 /**API Login logout resigen */
-Route::post('login',[AdminUserController::class, 'login'])->name('login');
+Route::post('login',[AdminUserController::class, 'login']);

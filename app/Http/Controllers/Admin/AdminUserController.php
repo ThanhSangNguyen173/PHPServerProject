@@ -39,10 +39,16 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $users = Users::create($request->all());
+      
+        // $users = Users::create(
+        //     $request->all());
+        $users = Users::create([
+            'full_name'=>$request->full_name,
+            'username'=>$request->username,
+            'password'=>bcrypt($request->password),
+            'email'=>$request->email,
+            'DOB'=>$request->DOB,]);
         $users_list =  Users::all();
-
         return response()->json($users_list, 201);
     }
 
@@ -100,12 +106,17 @@ class AdminUserController extends Controller
     }
 
     public function login(Request $request){
-        $email=$request['email'];
-        $password=$request['password'];
-        if(Auth::attempt(['email'=>$email,'password'=>$password])){
-            return response()->json(['message'=>'login success']);
-        }else{return response()->json(['message'=>'login fail']); }
-    }
 
+
+        // $user=$request['user'];
+        // $password=$request['password'];
+        // return response()->json([ $user,$password]);
+        $arr=['username'=>$request->username,'password'=>$request->password];
+        $user=$request['user'];
+        $password=$request['password'];
+        if(Auth::attempt($arr)){
+            return response()->json(['message'=>'login success']);
+        }else{return response()->json(['message'=>'login fail']);}
+    }
 
 }
