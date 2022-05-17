@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class AdminUserController extends Controller
 {
@@ -38,10 +39,16 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $users = Users::create($request->all());
+      
+        // $users = Users::create(
+        //     $request->all());
+        $users = Users::create([
+            'full_name'=>$request->full_name,
+            'username'=>$request->username,
+            'password'=>bcrypt($request->password),
+            'email'=>$request->email,
+            'DOB'=>$request->DOB,]);
         $users_list =  Users::all();
-
         return response()->json($users_list, 201);
     }
 
@@ -95,7 +102,21 @@ class AdminUserController extends Controller
         //
         $users = Users::findOrFail($id);
         $users->delete();
-
         return response()->json($users);
+    }
+
+    public function login(Request $request){
+
+
+        // $user=$request['user'];
+        // $password=$request['password'];
+        // return response()->json([ $user,$password]);
+        $arr=['username'=>$request->username,'password'=>$request->password];
+        $user=$request['user'];
+        $password=$request['password'];
+        if(Auth::attempt($arr)){
+            $info = Auth::user();
+            return response()->json([$info,'message'=>'login success']);
+        }else{return response()->json(['message'=>'login fail']);}
     }
 }
