@@ -49,7 +49,7 @@ class AdminUserController extends Controller
             'email'=>$request->email,
             'DOB'=>$request->DOB,]);
         $users_list =  Users::all();
-        return response()->json($users_list, 201);
+        return response()->json(['User_list' => $users_list, 'message'=>'Resigen Success'], 201);
     }
 
     /**
@@ -86,7 +86,14 @@ class AdminUserController extends Controller
     {
         //
         $users=Users::findOrFail($id);
-        $users->update($request->all());
+       // $users->update($request->all());
+        $users->update([  
+            'full_name'=>$request->full_name,
+            'username'=>$request->username,
+            'password'=>bcrypt($request->password),
+            'email'=>$request->email,
+            'DOB'=>$request->DOB,]);
+            
         $users->save();
         return response()->json($users);
     }
@@ -116,7 +123,9 @@ class AdminUserController extends Controller
         $password=$request['password'];
         if(Auth::attempt($arr)){
             $info = Auth::user();
-            return response()->json([$info,'message'=>'login success']);
-        }else{return response()->json(['message'=>'login fail']);}
+            return response()->json(['User'=>$info,'message'=>'Success'], 200);
+        }else{
+            return response()->json(['User'=>'null','message'=>'Failed'], 200);
+        }
     }
 }
