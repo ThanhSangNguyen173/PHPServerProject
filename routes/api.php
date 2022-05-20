@@ -14,41 +14,43 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 /*API Tables */
-Route::get('table/{id}',[AdminTablesController::class, 'edit']);
-Route::get('table',[AdminTablesController::class, 'index']);
+Route::post('table/{id}',[AdminTablesController::class, 'edit']);
+Route::post('table_list',[AdminTablesController::class, 'index']);
 Route::post('table',[AdminTablesController::class,'store']);
-Route::put('table/{id}',[AdminTablesController::class,'update']);
-Route::delete('table/{id}',[AdminTablesController::class,'destroy']);
+Route::post('table_edit/{id}',[AdminTablesController::class,'update']);
+Route::post('table_delete/{id}',[AdminTablesController::class,'destroy']);
 
 /*API Products */
-Route::get('products/{id}',[AdminProductsController::class, 'edit']);
-Route::get('products', [AdminProductsController::class, 'index']);
+Route::post('products/{id}',[AdminProductsController::class, 'edit']);
+Route::post('products_list', [AdminProductsController::class, 'index']);
 Route::post('products', [AdminProductsController::class, 'store']);
-Route::put('products/{id}', [AdminProductsController::class, 'update']);
-Route::delete('products/{id}', [AdminProductsController::class, 'destroy']);
+Route::post('products_edit/{id}', [AdminProductsController::class, 'update']);
+Route::post('products_delete/{id}', [AdminProductsController::class, 'destroy']);
 
 /*API Bill */
-Route::get('bill/{id}',[AdminBillController::class, 'edit']);
-Route::get('bill', [AdminBillController::class, 'index']);
+Route::post('bill/{id}',[AdminBillController::class, 'edit']);
+Route::post('bill_list', [AdminBillController::class, 'index']);
 Route::post('bill', [AdminBillController::class, 'store']);
-Route::put('bill/{id}', [AdminBillController::class, 'update']);
-Route::delete('bill/{id}', [AdminBillController::class, 'destroy']);
+Route::post('bill_edit/{id}', [AdminBillController::class, 'update']);
+Route::post('bill_delete/{id}', [AdminBillController::class, 'destroy']);
 
 /*API Users */
-Route::get('users/{id}',[AdminUserController::class, 'edit']);
-Route::get('users',[AdminUserController::class, 'index']);
+Route::post('users/{id}',[AdminUserController::class, 'edit']);
+Route::post('users_list',[AdminUserController::class, 'index']);
 Route::post('users',[AdminUserController::class, 'store']);
-Route::put('users/{id}', [AdminUserController::class, 'update']);
-Route::delete('users/{id}', [AdminUserController::class, 'destroy']);
+Route::post('users_edit/{id}', [AdminUserController::class, 'update']);
+Route::post('users_delete/{id}', [AdminUserController::class, 'destroy']);
+
+/**API Login Register */
+Route::post('login',[AdminUserController::class, 'login']);
 
 /*API Order_Item */
-Route::get('orderitem/{id}',[AdminOrderItemsController::class, 'edit']);
-Route::get('orderitem',[AdminOrderItemsController::class, 'index']);
+Route::post('orderitem/{id}',[AdminOrderItemsController::class, 'edit']);
+Route::post('orderitem_list',[AdminOrderItemsController::class, 'index']);
 Route::post('orderitem',[AdminOrderItemsController::class, 'store']);
-Route::put('orderitem/{id}', [AdminOrderItemsController::class, 'update']);
-Route::delete('orderitem/{id}', [AdminOrderItemsController::class, 'destroy']);
+Route::post('orderitem_edit/{id}', [AdminOrderItemsController::class, 'update']);
+Route::post('orderitem_delete/{id}', [AdminOrderItemsController::class, 'destroy']);
 
 
-/**API Login logout resigen */
-Route::post('login',[AdminUserController::class, 'login']);
+
 

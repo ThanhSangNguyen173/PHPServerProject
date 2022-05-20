@@ -40,8 +40,6 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
       
-        // $users = Users::create(
-        //     $request->all());
         $users = Users::create([
             'full_name'=>$request->full_name,
             'username'=>$request->username,
@@ -84,9 +82,8 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
         $users=Users::findOrFail($id);
-       // $users->update($request->all());
         $users->update([  
             'full_name'=>$request->full_name,
             'username'=>$request->username,
@@ -106,18 +103,13 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
         $users = Users::findOrFail($id);
         $users->delete();
         return response()->json($users);
     }
 
-    public function login(Request $request){
-
-
-        // $user=$request['user'];
-        // $password=$request['password'];
-        // return response()->json([ $user,$password]);
+    public function login(Request $request)
+    {
         $arr=['username'=>$request->username,'password'=>$request->password];
         $user=$request['user'];
         $password=$request['password'];
