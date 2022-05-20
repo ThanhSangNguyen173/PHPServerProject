@@ -39,7 +39,7 @@ class AdminBillController extends Controller
     public function store(Request $request)
     {
         $bill = Bill::create($request->all());
-        $bill = Bill::all();
+        
 
         return response()->json($bill, 201);
     }
