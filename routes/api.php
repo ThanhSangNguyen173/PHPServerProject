@@ -3,10 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminProductsController;
-use  App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminTablesController;
 use App\Http\Controllers\Admin\AdminBillController;
-
+use App\Http\Controllers\Admin\AdminOrderItemsController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -40,6 +40,14 @@ Route::get('users',[AdminUserController::class, 'index']);
 Route::post('users',[AdminUserController::class, 'store']);
 Route::put('users/{id}', [AdminUserController::class, 'update']);
 Route::delete('users/{id}', [AdminUserController::class, 'destroy']);
+
+/*API Order_Item */
+Route::get('orderitem/{id}',[AdminOrderItemsController::class, 'edit']);
+Route::get('orderitem',[AdminOrderItemsController::class, 'index']);
+Route::post('orderitem',[AdminOrderItemsController::class, 'store']);
+Route::put('orderitem/{id}', [AdminOrderItemsController::class, 'update']);
+Route::delete('orderitem/{id}', [AdminOrderItemsController::class, 'destroy']);
+
 
 /**API Login logout resigen */
 Route::post('login',[AdminUserController::class, 'login']);
