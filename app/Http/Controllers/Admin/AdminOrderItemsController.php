@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\OrderItems;
+use App\Models\Products;
 
 class AdminOrderItemsController extends Controller
 {
@@ -38,9 +39,12 @@ class AdminOrderItemsController extends Controller
      */
     public function store(Request $request)
     {
-        $order_item = OrderItems::create($request->all());
-        
-
+        $products = Products::findOrFail($request->products_id);
+        $price = $products->price;
+        $order_item = OrderItems::create([
+            'products_id'=>$request->products_id,
+            'quantity'=>$request->quantity,
+            'total'=>$price*$request->quantity,]);
         return response()->json($order_item, 201);
     }
 
