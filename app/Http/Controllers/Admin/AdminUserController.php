@@ -115,9 +115,9 @@ class AdminUserController extends Controller
         $password=$request['password'];
         if(Auth::attempt($arr)){
             $info = Auth::user();
-            return response()->json(['User'=>$info,'message'=>'Success'], 200);
+            return response()->json(['user'=>$info,'message'=>'Success'], 200);
         }else{
-            return response()->json(['User'=>'null','message'=>'Failed'], 200);
+            return response()->json(['user'=>'null','message'=>'Failed'], 200);
         }
     }
 }
