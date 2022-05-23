@@ -12,6 +12,7 @@ class OrderItems extends Model
     protected $table='order_items';
 
     protected $fillable = [
+        'bill_id',
         'products_id',
         'quantity',
         'total'

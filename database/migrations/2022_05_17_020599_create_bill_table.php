@@ -15,15 +15,11 @@ return new class extends Migration
     {
         Schema::create('bill', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('desk_id');
             $table->unsignedBigInteger('user_id');
             $table->string('time_in');
             $table->string('time_out');
 
-            $table->foreign('order_id') 
-                ->references('id')->on('order_items')
-                ->onUpdate('CASCADE');
             $table->foreign('desk_id') 
                 ->references('id')->on('table')
                 ->onUpdate('CASCADE');

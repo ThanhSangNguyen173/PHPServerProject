@@ -33,6 +33,8 @@ Route::post('bill_list', [AdminBillController::class, 'index']);
 Route::post('bill', [AdminBillController::class, 'store']);
 Route::post('bill_edit/{id}', [AdminBillController::class, 'update']);
 Route::post('bill_delete/{id}', [AdminBillController::class, 'destroy']);
+/*API show OrderItems of Bill */
+Route::post('bill_detail/{id}',[AdminBillController::class, 'show']);
 
 /*API Users */
 Route::post('users/{id}',[AdminUserController::class, 'edit']);
