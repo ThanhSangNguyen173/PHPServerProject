@@ -52,7 +52,8 @@ class AdminBillController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Bill::find($id)->orderItems;
+        return response()->json($data);
     }
 
     /**

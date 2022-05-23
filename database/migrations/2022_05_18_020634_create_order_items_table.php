@@ -16,12 +16,16 @@ return new class extends Migration
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('products_id');
+            $table->unsignedBigInteger('bill_id');
             $table->integer('quantity');
             $table->integer('total');
             
             $table->foreign('products_id') 
                 ->references('id')->on('products')
                 ->onUpdate('CASCADE');
+            $table->foreign('bill_id') 
+                ->references('id')->on('bill')
+                ->onDelete('CASCADE');
             
         });
     }

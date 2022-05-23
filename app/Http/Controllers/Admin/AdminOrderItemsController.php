@@ -44,6 +44,7 @@ class AdminOrderItemsController extends Controller
         $order_item = OrderItems::create([
             'products_id'=>$request->products_id,
             'quantity'=>$request->quantity,
+            'bill_id'=>$request->bill_id,
             'total'=>$price*$request->quantity,]);
         return response()->json($order_item, 201);
     }
