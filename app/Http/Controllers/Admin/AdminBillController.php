@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Bill;
+use App\Models\Products;
 
 class AdminBillController extends Controller
 {
@@ -52,8 +53,23 @@ class AdminBillController extends Controller
      */
     public function show($id)
     {
+        $oder_item_list = array();
         $data = Bill::find($id)->orderItems;
-        return response()->json($data);
+        for ($i=0; $i < count($data); $i++) { 
+            $object = $data[$i];
+            $quantity = $object->quantity;
+            $total = $object->total;
+            $products = Products::findOrFail($object->products_id);
+            $name = $products->name;
+            $price = $products->price;
+            $imgUrl = $products->imgUrl;
+
+            $foo = array('name' => $name, 'img' => $imgUrl, 'price' => $price, 'quantity' => $quantity, 'total' => $total );
+            $foo = (object)$foo;
+            array_push($oder_item_list, $foo);
+        }
+        ;
+        return response()->json($oder_item_list);
     }
 
     /**
