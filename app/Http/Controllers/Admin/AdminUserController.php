@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Users;
-use Illuminate\Support\Facades\DB;
+use App\Models\Users;               // lay du lieu tu trong ban khi database tra ve
+use Illuminate\Support\Facades\DB;  // ket noi den database
 use Auth;
 
 class AdminUserController extends Controller
@@ -85,11 +85,11 @@ class AdminUserController extends Controller
         
         $users=Users::findOrFail($id);
         $users->update([  
-            'full_name'=>$request->full_name,
-            'username'=>$request->username,
-            'password'=>bcrypt($request->password),
-            'email'=>$request->email,
-            'DOB'=>$request->DOB,]);
+            'full_name' =>$request->full_name,
+            'username'  =>$request->username,
+            'password'  =>bcrypt($request->password),
+            'email'     =>$request->email,
+            'DOB'       =>$request->DOB,]);
             
         $users->save();
         return response()->json($users);

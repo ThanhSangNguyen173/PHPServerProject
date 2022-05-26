@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminTablesController;
 use App\Http\Controllers\Admin\AdminBillController;
 use App\Http\Controllers\Admin\AdminOrderItemsController;
+use App\Http\Controllers\Admin\LoginController;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -52,6 +53,10 @@ Route::post('orderitem_list',[AdminOrderItemsController::class, 'index']);
 Route::post('orderitem',[AdminOrderItemsController::class, 'store']);
 Route::post('orderitem_edit/{id}', [AdminOrderItemsController::class, 'update']);
 Route::post('orderitem_delete/{id}', [AdminOrderItemsController::class, 'destroy']);
+
+Route::post('loginnn',[LoginController::class,'login']);
+Route::post('userinfo',[LoginController::class,'userinfo']);
+Route::post('logout',[LoginController::class,'logout']);
 
 
 
