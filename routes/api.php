@@ -44,8 +44,10 @@ Route::post('users',[AdminUserController::class, 'store']);
 Route::post('users_edit/{id}', [AdminUserController::class, 'update']);
 Route::post('users_delete/{id}', [AdminUserController::class, 'destroy']);
 
-/**API Login Register */
-Route::post('login',[AdminUserController::class, 'login']);
+/**API Login, Logout Register */
+//Route::post('login',[AdminUserController::class, 'login']);
+Route::post('login',[LoginController::class, 'login']);
+Route::post('logout',[LoginController::class, 'logout']);
 
 /*API Order_Item */
 Route::post('orderitem/{id}',[AdminOrderItemsController::class, 'edit']);
@@ -56,7 +58,5 @@ Route::post('orderitem_delete/{id}', [AdminOrderItemsController::class, 'destroy
 
 
 /*API test JWT */
-Route::post('loginJWT',[LoginController::class, 'login']);
-Route::post('logout',[LoginController::class, 'logout']);
 Route::post('test',[TestController::class, 'test']);
 

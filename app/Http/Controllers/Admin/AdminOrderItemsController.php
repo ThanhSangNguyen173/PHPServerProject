@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\OrderItems;
@@ -17,6 +17,11 @@ class AdminOrderItemsController extends Controller
      */
     public function index()
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $order_item = OrderItems::all();
         return response()->json($order_item);
     }
@@ -39,6 +44,11 @@ class AdminOrderItemsController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $products = Products::findOrFail($request->products_id);
         $price = $products->price;
         $order_item = OrderItems::create([
@@ -68,6 +78,11 @@ class AdminOrderItemsController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $order_item = OrderItems::findOrFail($id);
         return response()->json($order_item);
     }
@@ -81,6 +96,11 @@ class AdminOrderItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $order_item = OrderItems::findOrFail($id);
         $order_item->update($request->all());
         $order_item->save();
@@ -96,6 +116,11 @@ class AdminOrderItemsController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $order_item = OrderItems::findOrFail($id);
         $order_item->delete();
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Bill;
@@ -17,6 +17,11 @@ class AdminBillController extends Controller
      */
     public function index()
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $bill = Bill::all();
         return response()->json($bill);
     }
@@ -39,6 +44,11 @@ class AdminBillController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $bill = Bill::create($request->all());
         
 
@@ -53,6 +63,11 @@ class AdminBillController extends Controller
      */
     public function show($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $oder_item_list = array();
         $data = Bill::find($id)->orderItems;
         for ($i=0; $i < count($data); $i++) { 
@@ -80,6 +95,11 @@ class AdminBillController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $bill = Bill::findOrFail($id);
         return response()->json($bill);
     }
@@ -93,6 +113,11 @@ class AdminBillController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $bill = Bill::findOrFail($id);
         $bill->update($request->all());
         $bill->save();
@@ -108,6 +133,11 @@ class AdminBillController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $bill = Bill::findOrFail($id);
         $bill->delete();
 

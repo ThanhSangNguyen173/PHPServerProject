@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use Illuminate\Http\Request;
 use App\Models\Table;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +16,11 @@ class AdminTablesController extends Controller
      */
     public function index()
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $table = Table::all();
 
         return response()->json($table);
@@ -39,6 +44,11 @@ class AdminTablesController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $table = Table::create($request->all());
 
         $table_list = Table::all();
@@ -64,6 +74,11 @@ class AdminTablesController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $table = Table::findOrFail($id);
         return response()->json($table);
     }
@@ -77,6 +92,11 @@ class AdminTablesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $table = Table::findOrFail($id);
         $table->update($request->all());
         $table->save();
@@ -91,6 +111,11 @@ class AdminTablesController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $table = Table::findOrFail($id);
         $table->delete();
         return response()->json($table);

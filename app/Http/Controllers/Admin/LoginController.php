@@ -12,10 +12,10 @@ class LoginController extends Controller
         $creds = $request->only(['username', 'password']);
         
         if(!$token = auth()->attempt($creds)){
-            return response()->json(['error' => 'Incorrect username/password'], 401);
+            return response()->json(['message'=>'Failed'], 401);
         }
 
-        return response()->json(['token' => $token]);
+        return response()->json(['token' => $token, 'message'=>'Success'], 200);
     }
 
     public function logout ()
