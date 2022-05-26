@@ -7,7 +7,8 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminTablesController;
 use App\Http\Controllers\Admin\AdminBillController;
 use App\Http\Controllers\Admin\AdminOrderItemsController;
-
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\TestController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -43,8 +44,10 @@ Route::post('users',[AdminUserController::class, 'store']);
 Route::post('users_edit/{id}', [AdminUserController::class, 'update']);
 Route::post('users_delete/{id}', [AdminUserController::class, 'destroy']);
 
-/**API Login Register */
-Route::post('login',[AdminUserController::class, 'login']);
+/**API Login, Logout Register */
+//Route::post('login',[AdminUserController::class, 'login']);
+Route::post('login',[LoginController::class, 'login']);
+Route::post('logout',[LoginController::class, 'logout']);
 
 /*API Order_Item */
 Route::post('orderitem/{id}',[AdminOrderItemsController::class, 'edit']);
@@ -54,5 +57,6 @@ Route::post('orderitem_edit/{id}', [AdminOrderItemsController::class, 'update'])
 Route::post('orderitem_delete/{id}', [AdminOrderItemsController::class, 'destroy']);
 
 
-
+/*API test JWT */
+Route::post('test',[TestController::class, 'test']);
 

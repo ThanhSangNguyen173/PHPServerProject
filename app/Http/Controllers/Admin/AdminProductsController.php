@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
@@ -16,6 +16,11 @@ class AdminProductsController extends Controller
      */
     public function index()
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $products = Products::all();
         return response()->json($products);
     }
@@ -38,6 +43,11 @@ class AdminProductsController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $products = Products::create($request->all());
         $products_list = Products::all();
 
@@ -63,6 +73,11 @@ class AdminProductsController extends Controller
      */
     public function edit($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $products = Products::findOrFail($id);
 
         return response()->json($products);
@@ -77,6 +92,11 @@ class AdminProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $products = Products::findOrFail($id);
         $products->update($request->all());
         $products->save();
@@ -92,6 +112,11 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $user = auth()->userOrFail(); 
+        } catch(\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e){
+            return response()->json(['error'=>$e->getMessage()]);
+        }
         $products = Products::findOrFail($id);
         $products->delete();
 
