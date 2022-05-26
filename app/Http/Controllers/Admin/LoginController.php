@@ -13,7 +13,7 @@ class LoginController extends Controller
         $creds = $request->only(['username', 'password']);
         
         if(!$token = auth()->attempt($creds)){
-            return response()->json(['user'=>null,'token' => 'None','message'=>'Failed'], 401);
+            return response()->json(['user'=>'null','token' => 'None','message'=>'Failed'], 401);
         }
         
         $info = Auth::user();
