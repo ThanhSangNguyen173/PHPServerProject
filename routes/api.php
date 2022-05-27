@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminBillController;
 use App\Http\Controllers\Admin\AdminOrderItemsController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\TestController;
+use App\Http\Controllers\Admin\MapController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -59,4 +60,8 @@ Route::post('orderitem_delete/{id}', [AdminOrderItemsController::class, 'destroy
 
 /*API test JWT */
 Route::post('test',[TestController::class, 'test']);
+
+/*API AN BoxyzVN */
+Route::post('add_map',[MapController::class, 'store']);
+Route::post('map_list',[MapController::class, 'index']);
 

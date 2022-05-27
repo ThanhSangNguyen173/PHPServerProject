@@ -21,11 +21,11 @@ return new class extends Migration
             $table->integer('total');
             
             $table->foreign('products_id') 
-                ->references('id')->on('products')
-                ->onUpdate('CASCADE');
+                  ->references('id')->on('products')
+                  ->onUpdate('CASCADE');
             $table->foreign('bill_id') 
-                ->references('id')->on('bill')
-                ->onDelete('CASCADE');
+                  ->references('id')->on('bill')
+                  ->onDelete('CASCADE');
             
         });
     }
