@@ -63,5 +63,5 @@ Route::post('test',[TestController::class, 'test']);
 
 /*API AN BoxyzVN */
 Route::post('add_map',[MapController::class, 'store']);
-Route::post('map_list',[MapController::class, 'index']);
+Route::get('map_list',[MapController::class, 'index']);
 
