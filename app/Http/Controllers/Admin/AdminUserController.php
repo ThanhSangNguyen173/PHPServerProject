@@ -106,9 +106,11 @@ class AdminUserController extends Controller
         $users->update([  
             'full_name'=>$request->full_name,
             'username'=>$request->username,
-            'password'=>bcrypt($request->password),
             'email'=>$request->email,
             'DOB'=>$request->DOB,]);
+            if($request->password!=null){
+             $users->update(['password'=>bcrypt($request->password)]);
+            }
             
         $users->save();
         return response()->json($users);
