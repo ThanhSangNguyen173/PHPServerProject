@@ -9,7 +9,7 @@ class TestController extends Controller
 {
     public function test()
     {
-        $hello = 'hello thuận';
+        $exp = 'available';
 
         try {
             $user = auth()->userOrFail(); 
@@ -17,6 +17,6 @@ class TestController extends Controller
             return response()->json(['error'=>$e->getMessage()]);
         }
 
-        return $hello;
+        return response()->json(['message'=> $exp],200);
     }
 }
