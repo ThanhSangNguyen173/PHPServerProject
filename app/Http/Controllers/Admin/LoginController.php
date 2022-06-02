@@ -11,9 +11,15 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $creds = $request->only(['username', 'password']);
-        
-        if(!$token = auth()->attempt($creds)){
-            return response()->json(['user'=>'null','token' => 'None','message'=>'Failed'], 401);
+
+        if ($request->username == 'admin' || $request->username == 'sang' ) {
+                if(!$token = auth()->claims(['roles' => 'admin'])->attempt($creds)){
+                    return response()->json(['user'=>'null','token' => 'null','message'=>'Failed'], 401);
+                }
+        }else{
+                if(!$token = auth()->claims(['roles' => 'member'])->attempt($creds)){
+                return response()->json(['user'=>'null','token' => 'null','message'=>'Failed'], 401);
+                }
         }
         
         $info = Auth::user();
